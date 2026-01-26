@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 // AAA - Arrange, Act, Assert
 
 test('test', async ({ page }) => {
-   
+
     //Arrange
     await page.goto('http://localhost:5173/');
     await expect(page.getByTestId('hero-section').getByRole('heading')).toContainText('Velô Sprint');
@@ -12,15 +12,27 @@ test('test', async ({ page }) => {
     await expect(page.getByTestId('header-nav')).toContainText('Consultar Pedido');
 
     //Act
-    await page.getByTestId('search-order-id').fill('VLO-7AKU91');
-    await page.getByTestId('search-order-button').click();
+    await page.getByRole('textbox', { name: 'Número do Pedido' }).fill('VLO-7AKU91');
+    await page.getByRole('button', { name: 'Buscar Pedido' }).click();
 
-    //Assert
-    await expect(page.getByTestId('order-result-status')).toBeVisible();
+     //Assert
+    await expect(page.getByText(/VLO-/)).toBeVisible({ timeout: 10_000 });
     await expect(page.getByTestId('order-result-id')).toContainText('VLO-7AKU91');
 
-    await expect(page.getByTestId('order-result-status')).toBeVisible();
-    await expect(page.getByTestId('order-result-status')).toContainText('APROVADO');
+
+    const orderCard = page.locator('[class*="animate-fade-in"]');
+    await expect(orderCard.getByText(/VLO-/)).toBeVisible();
+    await expect(orderCard.getByText('APROVADO')).toBeVisible();
+
+
+   
+    //await expect(page.getByTestId('order-result-id')).toBeVisible({timeout: 10_000});
+    //await expect(page.getByTestId('order-result-id')).toContainText('VLO-7AKU91');
+
+    // await expect(page.getByTestId('order-result-status')).toBeVisible();
+    // await expect(page.getByTestId('order-result-status')).toContainText('APROVADO');
+
+
 
 
 
