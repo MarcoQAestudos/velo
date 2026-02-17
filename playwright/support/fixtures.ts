@@ -1,5 +1,5 @@
 import { test as base, expect } from '@playwright/test'
-import { createOrderLookupActions } from './pages/OrderLockupPage'
+import { createOrderLookupActions } from './pages/OrderLockupActions'
 
 type AppFixtures = {
   app: {

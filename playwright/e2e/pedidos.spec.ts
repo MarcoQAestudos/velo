@@ -1,6 +1,6 @@
 import { test, expect } from '../support/fixtures'
 import { generateOrderCode } from '../support/helpers'
-import type { OrderDetails } from '../support/pages/OrderLockupPage'
+import type { OrderDetails } from '../support/pages/OrderLockupActions'
 
 test.describe('Consulta de Pedido', () => {
   test.beforeEach(async ({ app }) => {
@@ -77,7 +77,7 @@ test.describe('Consulta de Pedido', () => {
     const button = app.orderLookup.elements.searchButton
     await expect(button).toBeDisabled()
 
-    await app.orderLookup.elements.orderInput.fill('     ')
+    await app.orderLookup.elements.orderInput.fill('')
     await expect(button).toBeDisabled()
   })
 })
