@@ -7,8 +7,9 @@ export type OrderDetails = {
   status: OrderStatus
   color: string
   wheels: string
-  customer: { name: string; email: string }
+  customer: { name: string; email: string; phone: string; document: string }
   payment: string
+  total_price: string
 }
 
 export function createOrderLookupActions(page: Page) {
@@ -38,6 +39,14 @@ export function createOrderLookupActions(page: Page) {
     },
 
     async validateOrderDetails(order: OrderDetails) {
+      const expectedDate = new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo' }).format(new Date())
+      const formattedPrice = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+        .format(Number(order.total_price))
+        .replace(/\u00A0|\u202F/g, ' ')
+      
+      const wheelsText = order.wheels.toLowerCase().includes('sport') ? 'sport Wheels' : 'aero Wheels';
+      const paymentText = order.payment === 'Financiamento' ? 'Financiamento 12x' : order.payment;
+
       const snapshot = `
       - img
       - paragraph: Pedido
@@ -53,7 +62,7 @@ export function createOrderLookupActions(page: Page) {
       - paragraph: Interior
       - paragraph: cream
       - paragraph: Rodas
-      - paragraph: ${order.wheels}
+      - paragraph: ${wheelsText}
       - heading "Dados do Cliente" [level=4]
       - paragraph: Nome
       - paragraph: ${order.customer.name}
@@ -62,10 +71,10 @@ export function createOrderLookupActions(page: Page) {
       - paragraph: Loja de Retirada
       - paragraph
       - paragraph: Data do Pedido
-      - paragraph: /\\d+\\/\\d+\\/\\d+/
+      - paragraph: ${expectedDate}
       - heading "Pagamento" [level=4]
-      - paragraph: ${order.payment}
-      - paragraph: /R\\$ \\d+\\.\\d+,\\d+/
+      - paragraph: ${paymentText}
+      - paragraph: ${formattedPrice}
       `
       await expect(page.getByTestId(`order-result-${order.number}`)).toMatchAriaSnapshot(snapshot)
     },

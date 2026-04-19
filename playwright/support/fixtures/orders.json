@@ -1,0 +1,44 @@
+{
+  "aprovado": {
+    "number": "VLO-1000AP",
+    "status": "APROVADO",
+    "color": "Midnight Black",
+    "wheels": "Sport Wheels",
+    "customer": {
+      "name": "Fernando Papito",
+      "email": "fernando@papito.dev",
+      "phone": "11999999999",
+      "document": "12345678909"
+    },
+    "payment": "À Vista",
+    "total_price": "42000"
+  },
+  "reprovado": {
+    "number": "VLO-2000RP",
+    "status": "REPROVADO",
+    "color": "Lunar White",
+    "wheels": "Aero Wheels",
+    "customer": {
+      "name": "Fernando Papito",
+      "email": "reprovado@papito.dev",
+      "phone": "11988888888",
+      "document": "98765432100"
+    },
+    "payment": "Financiamento",
+    "total_price": "40000"
+  },
+  "em_analise": {
+    "number": "VLO-3000EA",
+    "status": "EM_ANALISE",
+    "color": "Glacier Blue",
+    "wheels": "Sport Wheels",
+    "customer": {
+      "name": "Fernando Papito",
+      "email": "analise@papito.dev",
+      "phone": "11977777777",
+      "document": "45612378912"
+    },
+    "payment": "Financiamento",
+    "total_price": "42000"
+  }
+}
