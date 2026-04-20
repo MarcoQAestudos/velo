@@ -55,6 +55,24 @@ export function createCheckoutActions(page: Page) {
     async expectSummaryTotal(total: string) {
       const totalElement = page.getByTestId('summary-total-price')
       await expect(totalElement).toHaveText(total)
+    },
+
+    async mockCreditAnalysis(score: number) {
+      await page.route('**/functions/v1/credit-analysis', async route => {
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            status: 'Done',
+            score: score,
+          }),
+        })
+      })
+    },
+
+    async expectSuccess(heading: string | RegExp) {
+      await expect(page).toHaveURL(/\/success/)
+      await expect(page.getByRole('heading', { name: heading })).toBeVisible()
     }
   }
 }
