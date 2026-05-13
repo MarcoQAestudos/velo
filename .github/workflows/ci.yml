@@ -12,9 +12,9 @@ on:
 env:
   NODE_VERSION: '24'
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}
+  VERCEL_PROJECT_ID: prj_9D4Sk7sS3hs55qriqo5ZfujgFfX6
+  VERCEL_ORG_ID: team_nBo9OdctxUMblDriqU6bhlbz
+  VERCEL_SCOPE: marcoqaestudos-projects
 
 jobs:
   unit-tests:
