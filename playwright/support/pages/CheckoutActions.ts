@@ -4,13 +4,13 @@ export function createCheckoutActions(page: Page) {
   return {
     elements: {
       alerts: {
-        get name() { return page.getByTestId('alert-name') },
-        get lastname() { return page.getByTestId('alert-surname') },
-        get email() { return page.getByTestId('alert-email') },
-        get phone() { return page.getByTestId('alert-phone') },
-        get document() { return page.getByTestId('alert-cpf') },
-        get store() { return page.getByTestId('alert-store') },
-        get terms() { return page.getByTestId('alert-terms') },
+        get name() { return page.getByTestId('error-name') },
+        get lastname() { return page.getByTestId('error-lastname') },
+        get email() { return page.getByTestId('error-email') },
+        get phone() { return page.getByTestId('error-phone') },
+        get document() { return page.getByTestId('error-document') },
+        get store() { return page.getByTestId('error-store') },
+        get terms() { return page.getByTestId('error-terms') },
       },
       get terms() { return page.getByTestId('checkout-terms') },
     },
@@ -21,10 +21,10 @@ export function createCheckoutActions(page: Page) {
 
     async fillCustomerData(customer: { name: string; lastname: string; email: string; document: string; phone: string }) {
       await page.getByTestId('checkout-name').fill(customer.name)
-      await page.getByTestId('checkout-surname').fill(customer.lastname)
+      await page.getByTestId('checkout-lastname').fill(customer.lastname)
       await page.getByTestId('checkout-email').fill(customer.email)
       await page.getByTestId('checkout-phone').fill(customer.phone)
-      await page.getByTestId('checkout-cpf').fill(customer.document)
+      await page.getByTestId('checkout-document').fill(customer.document)
     },
 
     async selectStore(store: string) {
